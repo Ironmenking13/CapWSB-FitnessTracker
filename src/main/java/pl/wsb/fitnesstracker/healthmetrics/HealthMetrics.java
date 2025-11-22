@@ -33,13 +33,13 @@ public class HealthMetrics {
     private LocalDateTime date;
 
     @Column(name = "weight", nullable = false)
-    private LocalDate weight;
+    private Integer weight;
 
     @Column(name = "height", nullable = false)
-    private LocalDate height;
+    private Integer height;
 
     @Column(name = "hearthRate", nullable = false)
-    private LocalDate hearthRate;
+    private Integer hearthRate;
 
 
 }
