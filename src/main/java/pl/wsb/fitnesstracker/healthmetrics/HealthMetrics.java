@@ -24,21 +24,21 @@ public class HealthMetrics {
     @Nullable
     private Long id;
 
-    @Column(name = "user_id", nullable = true, unique = true)
-    @OneToMany
+    @Column(name = "user_id", nullable = false, unique = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private List<User> user_id;
 
     @Column(name = "date", nullable = false)
     private LocalDateTime date;
 
-    @Column(name = "weight", nullable = true)
+    @Column(name = "weight", nullable = false)
     private LocalDate weight;
 
-    @Column(name = "height", nullable = true)
+    @Column(name = "height", nullable = false)
     private LocalDate height;
 
-    @Column(name = "hearthRate", nullable = true)
+    @Column(name = "hearthRate", nullable = false)
     private LocalDate hearthRate;
 
 
