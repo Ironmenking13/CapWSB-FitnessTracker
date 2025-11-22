@@ -21,6 +21,12 @@ public class User {
     @Nullable
     private Long id;
 
+    @Column(name = "firstName", nullable = false)
+    private LocalDate firstName;
+
+    @Column(name = "lastName", nullable = false)
+    private LocalDate lastName;
+
     @Column(name = "birthdate", nullable = false)
     private LocalDate birthdate;
 
