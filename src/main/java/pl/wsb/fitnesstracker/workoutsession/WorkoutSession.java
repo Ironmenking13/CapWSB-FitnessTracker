@@ -1,26 +1,43 @@
 package pl.wsb.fitnesstracker.workoutsession;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import pl.wsb.fitnesstracker.training.api.Training;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
-// TODO: Define the Event entity with appropriate fields and annotations
+@Entity
+@Table(name = "workout_session")
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class WorkoutSession {
 
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "trainingId")
-    private List<WorkoutSession> trainingSessions;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "training_id", nullable = false)
+    private Training training;
 
-    private String timestamp;
+    @Column(name = "timestamp", nullable = false)
+    private LocalDateTime timestamp;
+
+    @Column(name = "start_latitude", nullable = false)
     private double startLatitude;
+
+    @Column(name = "start_longitude", nullable = false)
     private double startLongitude;
-    private double endLatitude;
-    private double endLongitude;
-    private double altitude;
+
+    @Column(name = "end_latitude")
+    private Double endLatitude;
+
+    @Column(name = "end_longitude")
+    private Double endLongitude;
+
+    @Column(name = "altitude")
+    private Double altitude;
+
 }

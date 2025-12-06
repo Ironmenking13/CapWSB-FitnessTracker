@@ -1,48 +1,49 @@
 package pl.wsb.fitnesstracker.healthmetrics;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 import pl.wsb.fitnesstracker.user.api.User;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
 
+/* Entity class representing health metrics.
+ * To be implemented with appropriate fields and methods.
+ */
 @Entity
-@Table(name = "HealthMetrics")
+@Table(name = "Health_Metrics")
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString
 public class HealthMetrics {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Nullable
     private Long id;
 
-    @Column(name = "user_id", nullable = false, unique = true)
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private List<User> user_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @Column(name = "date", nullable = false)
     private LocalDate date;
 
-    @Column(name = "weight", nullable = false)
-    private int weight;
+    @Column
+    private Double weight;
 
-    @Column(name = "height", nullable = false)
-    private int height;
+    @Column
+    private Double height;
 
-    @Column(name = "hearthRate", nullable = false)
-    private int hearthRate;
+    @Column(name = "heart_rate")
+    private Integer heartRate;
 
-    public HealthMetrics( int weight, int height, int hearthRate) {
-
+    public HealthMetrics() {
     }
+
+    public HealthMetrics(User user, LocalDate date, Double weight, Double height, Integer heartRate) {
+        this.user = user;
+        this.date = date;
+        this.weight = weight;
+        this.height = height;
+        this.heartRate = heartRate;
+    }
+
 
 }
