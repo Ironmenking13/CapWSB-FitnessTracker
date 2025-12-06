@@ -30,16 +30,19 @@ public class HealthMetrics {
     private List<User> user_id;
 
     @Column(name = "date", nullable = false)
-    private LocalDateTime date;
+    private LocalDate date;
 
     @Column(name = "weight", nullable = false)
-    private Integer weight;
+    private int weight;
 
     @Column(name = "height", nullable = false)
-    private Integer height;
+    private int height;
 
     @Column(name = "hearthRate", nullable = false)
-    private Integer hearthRate;
+    private int hearthRate;
 
+    public HealthMetrics( int weight, int height, int hearthRate) {
+
+    }
 
 }
